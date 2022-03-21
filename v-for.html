@@ -8,22 +8,23 @@
 </head>
 <body>
   <div id="app">
-    <p id="text">{{text}}</p>
+    <div v-for="item in list">{{item}}</div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
-    // JS寫法
-    // let text = document.getElementById('text');
-    // let text_node = document.createTextNode('Hello World!');
-    // text.appendChild(text_node);
-
-    // 使用 Vue
     new Vue({
       el: '#app',
       data: {
-        text: 'Hello World!'
+        list: [
+          'Audi',
+          'BMW',
+          'Land Rover',
+          'Mercedes',
+          'Volvo'
+        ]
       }
     });
   </script>
 </body>
 </html>
+<!-- https://www.youtube.com/watch?v=bUV-MOhyBlc&list=PL9CS3JVs8W0MBNDBNdMsfEdAomPv48B_g -->
