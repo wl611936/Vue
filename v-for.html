@@ -8,7 +8,12 @@
 </head>
 <body>
   <div id="app">
-    <div v-for="item in list">{{item}}</div>
+    <ul>
+      <li v-for="item in list">{{item}}</li>
+    </ul>
+    <ul>
+      <li v-for="item in obj">{{item.character}} - {{item.name}}</li>
+    </ul>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
@@ -20,11 +25,37 @@
           'BMW',
           'Land Rover',
           'Mercedes',
+          'Tesla',
           'Volvo'
+        ],
+        obj: [
+          {
+            character: 'Iron Man',
+            name: 'Tony Stark'
+          },
+          {
+            character: 'Thor',
+            name: 'Thor Odinson'
+          },
+          {
+            character: 'Hulk',
+            name: 'Bruce Banner'
+          },
+          {
+            character: 'Captain America',
+            name: 'Steven Rogers'
+          },
+          {
+            character: 'Hawkeye',
+            name: 'Clinton Barton'
+          },
+          {
+            character: 'Black Widow',
+            name: 'Natasha Romanoff'
+          }
         ]
       }
     });
   </script>
 </body>
 </html>
-<!-- https://www.youtube.com/watch?v=bUV-MOhyBlc&list=PL9CS3JVs8W0MBNDBNdMsfEdAomPv48B_g -->
