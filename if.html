@@ -7,6 +7,18 @@
   <title>Document</title>
 </head>
 <body>
-  <!-- https://www.youtube.com/watch?v=zSgg9BNGMvI&list=PL9CS3JVs8W0MBNDBNdMsfEdAomPv48B_g -->
+  <div id="app">
+    <p v-if="title">title</p>
+    <p v-else="content">content</p>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        title: false
+      }
+    });
+  </script>
 </body>
 </html>
