@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model="input">
+    <button @click="add">add</button>
+    <ul>
+      <li v-for="brand in brands">{{brand}}</li>
+    </ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        brands: [
+          'Benelli',
+          'Ducati',
+          'Honda',
+        ],
+        input: ''
+      },
+      methods: {
+        add(){
+          this.brands.push(this.input);
+          this.input = '';
+        }
+      }
+    });
+  </script>
+</body>
+</html>
