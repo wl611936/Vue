@@ -8,16 +8,16 @@
 </head>
 <body>
   <div id="app">
-    <!-- <a v-bind:href="link">{{name}}</a> -->
-    <a :href="link">{{name}}</a>
+    <!-- <input type="text" :value="text"> -->
+    <input type="text" v-model="text">
+    <span>{{text}}</span>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
     new Vue({
       el: '#app',
       data: {
-        name: 'w3schools',
-        link: 'https://www.w3schools.com/',
+        text: '輸入文字'
       }
     });
   </script>
