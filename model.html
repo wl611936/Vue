@@ -8,16 +8,18 @@
 </head>
 <body>
   <div id="app">
-    <!-- <input type="text" :value="text"> -->
     <input type="text" v-model="text">
-    <span>{{text}}</span>
+    <p>{{text}}</p>
+    <textarea name="" id="" cols="30" rows="10" v-model="desc"></textarea>
+    <p>{{desc}}</p>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
     new Vue({
       el: '#app',
       data: {
-        text: '輸入文字'
+        text: '標題',
+        desc: '內容'
       }
     });
   </script>
