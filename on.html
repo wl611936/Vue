@@ -8,18 +8,25 @@
 </head>
 <body>
   <div id="app">
-    <input type="text" v-model="text">
-    <p>{{text}}</p>
-    <textarea name="" id="" cols="30" rows="10" v-model="desc"></textarea>
-    <p>{{desc}}</p>
+    <!-- <button v-on:click="test">CLICK</button> -->
+    <button @click="test">CLICK</button>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
     new Vue({
       el: '#app',
-      data: {
-        text: 'Headline',
-        desc: 'Content'
+      methods: {
+        // test: function(){
+        //   console.log('1');
+        // }
+
+        // test: ()=>{
+        //   console.log('1');
+        // }
+
+        test(){
+          console.log('1');
+        }
       }
     });
   </script>
