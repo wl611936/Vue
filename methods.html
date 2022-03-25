@@ -11,7 +11,7 @@
     <input type="text" v-model="input">
     <button @click="add">add</button>
     <ul>
-      <li v-for="brand in brands">{{brand}}</li>
+      <li v-for="(brand, i) in brands" @click="del(i)">{{i}}{{brand}}</li>
     </ul>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -30,6 +30,10 @@
         add(){
           this.brands.push(this.input);
           this.input = '';
+        },
+        del(i){
+          // 從 i開始刪除 1個
+          this.brands.splice(i, 1);
         }
       }
     });
