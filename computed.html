@@ -22,14 +22,17 @@
         tax: 0.28
       },
       computed: {
-        ntd(){
-          // 四捨五入
-          return Math.round(this.yen * this.tax);
+        ntd: {
+          get(){
+            // 四捨五入
+            return Math.round(this.yen * this.tax);
+          },
+          set(num){
+            this.yen = Math.round(num / this.tax);
+          }
         }
       }
     });
   </script>
 </body>
 </html>
-
-<!-- https://www.youtube.com/watch?v=-exX-4owgkQ&list=PL9CS3JVs8W0MBNDBNdMsfEdAomPv48B_g -->
