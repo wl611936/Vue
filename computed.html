@@ -8,26 +8,28 @@
 </head>
 <body>
   <div id="app">
-    <input type="text" v-model="num">
-    <span>+</span>
-    <input type="text" v-model="num2">
-    <span>=</span>
-    <span>{{test}}</span>
+    <span>YEN：</span>
+    <input type="text" v-model="yen">
+    <span>NTD：</span>
+    <input type="text" v-model="ntd">
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
     new Vue({
       el: '#app',
       data: {
-        num: 0,
-        num2: 0
+        yen: 0,
+        tax: 0.28
       },
       computed: {
-        test(){
-          return parseInt(this.num) + parseInt(this.num2);
+        ntd(){
+          // 四捨五入
+          return Math.round(this.yen * this.tax);
         }
       }
     });
   </script>
 </body>
 </html>
+
+<!-- https://www.youtube.com/watch?v=-exX-4owgkQ&list=PL9CS3JVs8W0MBNDBNdMsfEdAomPv48B_g -->
