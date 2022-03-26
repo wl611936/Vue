@@ -5,22 +5,63 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .mask{
+      border-top: solid 1px #ccc;
+    }
+  </style>
 </head>
 <body>
-  <div id="app">
-
+  <div class="twzipcode">
+    <div data-role="county"></div>
+    <div data-role="district"></div>
+    <div data-role="zipcode"></div>
   </div>
+  <div id="app">
+    <button @click="mask()">查詢</button>
+    <div class="masks">
+      <div class="mask" v-for="data in masks.features" v-if="data.properties.town === district">
+        <br>
+        <div class="mask_num">
+          <div class="mask_adult">成人<span class="adult">{{data.properties.mask_adult}}</span>片</div>
+          <div class="mask_child">兒童<span class="child">{{data.properties.mask_child}}</span>片</div>
+        </div>
+        <div class="mask_info">
+          <div>{{data.properties.name}}</div>
+          <span>{{data.properties.address}}</span>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+  <script src="./twzipcode.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
+    const twzipcode = new TWzipcode('.twzipcode');
     new Vue({
       el: '#app',
       data: {
-        data: ''
+        masks: '',
+        county: '',
+        district: ''
       },
-      mounted(){
-        fetch('https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json').then(data=>{
-          return data.json();
-        })
+      methods: {
+        mask(){
+          let county = twzipcode.get('county');
+          let district = twzipcode.get('district');
+          this.county = county[0];
+          this.district = district[0];
+          // console.log(county);
+          // console.log(district);
+          fetch('https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json')
+          .then(data=>{
+            return data.json();
+          })
+          .then(e=>{
+            console.log(e);
+            this.masks = e;
+          })
+        }
       }
     });
   </script>
