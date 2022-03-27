@@ -8,10 +8,18 @@
 </head>
 <body>
   <div id="app">
-    
+    <test></test>
   </div>
+  <script type="text/x-template" id="test">
+    <div>
+      <h1>Hello Vue!</h1>
+    </div>
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
+    Vue.component('test',{
+      template: '#test'
+    });
     new Vue({
       el: '#app'
     });
