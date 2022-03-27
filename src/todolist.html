@@ -7,18 +7,19 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="app">
-    <test></test>
-  </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
+    // https://www.youtube.com/watch?v=WQaAHucp9NE&list=PL9CS3JVs8W0MBNDBNdMsfEdAomPv48B_g
+    Vue.component('todo',{
+      template:`
+        <form>
+          <input type="text">
+          <input type="submit" value="送出">
+        </form>
+      `
+    });
     new Vue({
-      el:'#app',
-      components:{
-        test:{
-          template:'<h1>Hello Vue!</h1>'
-        }
-      }
+      el:'#app'
     });
   </script>
 </body>
