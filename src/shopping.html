@@ -5,29 +5,102 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .color-box{
+      border: 1px solid #333;
+      display: inline-block;
+      height: 32px;
+      margin-right: 8px;
+      width: 32px;
+    }
+    .viewport{
+      height: 300px;
+      width: 246px;
+    }
+  </style>
 </head>
 <body>
   <div id="app">
     <h2>{{name}}</h2>
-    <img :src="img">
+    <!-- <div v-if="instock > 10">熱賣中</div>
+    <div v-else-if="instock > 0 && instock <= 10">低庫存</div>
+    <div v-else>補貨中</div> -->
+    <img class="viewport" :src="img">
     <ul>
       <li v-for="d in details">{{d}}</li>
     </ul>
-    <button>立即試乘</button>
+    <ul>
+      <li v-if="instock > 10">熱賣中</li>
+      <li v-else-if="instock > 0 && instock <= 10">低庫存</li>
+      <li v-else>補貨中</li>
+      <li class="color-box" :style="{backgroundColor:v.color}" v-for="(v, i) in variants" @mouseover="changeIndex(i)"></li>
+    </ul>
+    <button :disabled="instock === 0" @click="addCart">加入購物車</button>
+    <div class="cart">購物車({{cart}})</div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
     new Vue({
       el: '#app',
       data: {
-        name: 'Volkswagen Tiguan',
-        img: '../img/1.png',
+        name: 'POLO衫',
+        selected: 0,
+        cart: 0,
         details: [
           '產地：進口',
-          '排氣量：1498cc'
+          '材質：100%純棉'
+        ],
+        variants: [
+          {
+            color: 'darkorange',
+            img: '../img/1.jpg',
+            quantity: 18
+          },
+          {
+            color: 'firebrick',
+            img: '../img/2.jpg',
+            quantity: 0
+          },
+          {
+            color: 'dodgerblue',
+            img: '../img/3.jpg',
+            quantity: 6
+          },
+          {
+            color: 'navy',
+            img: '../img/4.jpg',
+            quantity: 8
+          },
+          {
+            color: 'forestgreen',
+            img: '../img/5.jpg',
+            quantity: 0
+          },
+          {
+            color: 'gainsboro',
+            img: '../img/6.jpg',
+            quantity: 16
+          }
         ]
+      },
+      methods:{
+        changeIndex(i){
+          this.selected = i ;
+        },
+        addCart(){
+          this.cart += 1;
+        }
+      },
+      computed:{
+        img(){
+          return this.variants[this.selected].img;
+        },
+        instock(){
+          return this.variants[this.selected].quantity;
+        }
       }
     });
   </script>
 </body>
 </html>
+<!-- https://www.youtube.com/watch?list=PL9CS3JVs8W0MBNDBNdMsfEdAomPv48B_g&v=sty1d1KC_d0 -->
