@@ -7,16 +7,63 @@
   <title>Document</title>
 </head>
 <body>
+  <div id="app">
+    <todo-list></todo-list>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
-    // https://www.youtube.com/watch?v=WQaAHucp9NE&list=PL9CS3JVs8W0MBNDBNdMsfEdAomPv48B_g
-    Vue.component('todo',{
+    Vue.component('todo-input',{
       template:`
         <form>
-          <input type="text">
-          <input type="submit" value="送出">
-        </form>
-      `
+          <input type="text" v-model="input">
+          <input type="submit" value="送出" @click.prevent="add_input">
+        </form>        
+      `,
+      data(){
+        return{
+          input:''
+        }
+      },
+      methods:{
+        add_input(){
+          this.$emit('add', this.input);
+          this.input = '';
+        }
+      }
+    })
+    Vue.component('todo-item',{
+      props:['item', 'index'],
+      template:`
+        <li @click="del">{{item}}</li>
+      `,
+      methods:{
+        del(){
+          this.$emit('del_input', this.index)
+        }
+      }
+    })
+    Vue.component('todo-list',{
+      template:`
+        <div>
+          <todo-input @add="addInput"></todo-input>
+          <ul>
+            <todo-item v-for="(todo, idx) in todos" :item="todo" :index="idx" @del_input="delInput"></todo-item>
+          </ul>
+        </div>
+      `,
+      data(){
+        return{
+          todos:['早餐','午餐','晚餐']
+        }
+      },
+      methods:{
+        addInput(v){
+          this.todos.push(v)
+        },
+        delInput(v){
+          this.todos.splice(v, 1)
+        }
+      }
     });
     new Vue({
       el:'#app'
